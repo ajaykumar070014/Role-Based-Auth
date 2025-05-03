@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "99c21d7d-3670-4576-8a68-b149e880569b",
+		"name": "Role Based Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37898725"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/api/public/health-check",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"health-check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/api/auth/user",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consumer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/api/auth/consumer/check",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"consumer",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Seller",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base}}/api/auth/seller/check",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"seller",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User creation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"ajaykumar\",\r\n    \"password\":\"12345\",\r\n    \"roleName\":\"SELLER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/public/user-creation",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"user-creation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response = pm.response.json();\r",
+							"if (response.token) {\r",
+							"    pm.environment.set(\"token\", response.token);\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "// {\r\n//     \"username\":\"CONSUMER\",\r\n//     \"password\":\"12345\"\r\n// }\r\n\r\n{\r\n    \"username\":\"SELLER\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base}}/api/public/login",
+					"host": [
+						"{{base}}"
+					],
+					"path": [
+						"api",
+						"public",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
