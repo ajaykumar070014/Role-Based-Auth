@@ -3,18 +3,18 @@ package com.rolebasedauth.controller;
 import com.rolebasedauth.dto.req.UserLoginReqDto;
 import com.rolebasedauth.dto.req.UserCreationReqDto;
 import com.rolebasedauth.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/public")
 public class PublicController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping("/health-check")
     public ResponseEntity<?> healthCheck() {

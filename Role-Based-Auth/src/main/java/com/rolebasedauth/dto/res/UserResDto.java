@@ -7,6 +7,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class UserResDto {
-    private UUID userId;
+    private String userId;
     private String Username;
 }
